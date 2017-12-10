@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qtquickcontrols2.conf</file>
+        <file>qml/main.qml</file>
+        <file>qml/Page1.qml</file>
+        <file>qml/Page1Form.ui.qml</file>
+        <file>qml/MainView.qml</file>
+        <file>qml/Resources.js</file>
+        <file>qml/Page.qml</file>
+    </qresource>
+</RCC>
