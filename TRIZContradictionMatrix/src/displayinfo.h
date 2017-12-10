@@ -3,13 +3,13 @@
 #include <QSize>
 #include <QRect>
 
-class ScreenInfo : public QObject
+class DisplayInfo : public QObject
 {
     Q_OBJECT
 
 public:
-    ScreenInfo(QObject *parent = NULL);
-    ~ScreenInfo();
+    DisplayInfo(QObject *parent = NULL);
+    ~DisplayInfo();
 
     Q_INVOKABLE QSize  screenSize() const;    
 //    Q_INVOKABLE qreal  px(double val) const;

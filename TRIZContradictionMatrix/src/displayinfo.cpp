@@ -1,4 +1,4 @@
-#include "screeninfo.h"
+#include "displayinfo.h"
 #include <QScreen>
 #include <QGuiApplication>
 #include <QDebug>
@@ -8,7 +8,7 @@
 //#include <QtAndroid>
 //#endif
 
-ScreenInfo::ScreenInfo(/*int dpWidth,*/QObject *parent)
+DisplayInfo::DisplayInfo(/*int dpWidth,*/QObject *parent)
   : QObject(parent)
 {
 //  refDpi      = 96;
@@ -57,46 +57,46 @@ ScreenInfo::ScreenInfo(/*int dpWidth,*/QObject *parent)
     m_ratioFont = qMin(height*refDpi/(dpi*refHeight), width*refDpi/(dpi*refWidth));
 }
 
-ScreenInfo::~ScreenInfo()
+DisplayInfo::~DisplayInfo()
 {
 
 }
 
-QSize ScreenInfo::screenSize() const
+QSize DisplayInfo::screenSize() const
 {
   return QSize(width, height);
 }
 
-qreal ScreenInfo::pt(const int value) const
+qreal DisplayInfo::pt(const int value) const
 {
     return int(value * m_ratioFont);
 }
 
-qreal ScreenInfo::dp(const int value) const
+qreal DisplayInfo::dp(const int value) const
 {
     return qMax(2, int(value * m_ratio));
 }
-//qreal ScreenInfo::pt(double val) const
+//qreal DisplayInfo::pt(double val) const
 //{
 //   return val * dpiFactor;
 //}
 
-//qreal ScreenInfo::px(double val) const
+//qreal DisplayInfo::px(double val) const
 //{
 //  return val;
 //}
 
-//qreal ScreenInfo::widthPercent(double proportion) const
+//qreal DisplayInfo::widthPercent(double proportion) const
 //{
 //  return width * proportion;
 //}
 
-//qreal ScreenInfo::heightPercent(double proportion) const
+//qreal DisplayInfo::heightPercent(double proportion) const
 //{
 //  return height * proportion;
 //}
 
-QString ScreenInfo::log() const
+QString DisplayInfo::log() const
 {
     qDebug() << "hahahah";
     return "hahahah";

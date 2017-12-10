@@ -4,9 +4,14 @@ import QtQuick.Layouts 1.3
 import "Resources.js" as R
 
 Rectangle {
-    width: parent.width
-    height: parent.height
+    id: mainView
+
     color:"blue"
+
+    Component.onCompleted: {
+        R.log();
+        console.log(R.dp(150));
+    }
 
     ColumnLayout
     {
@@ -15,7 +20,7 @@ Rectangle {
         {
             id: titleBar
             height: R.dp(150)
-            width: parent.width
+            width: R.dp(150)//mainView.width
             color: "Red"
         }
 

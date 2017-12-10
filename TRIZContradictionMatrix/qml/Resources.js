@@ -1,1 +1,9 @@
-function dp(size) { return screen.dp(size); }
+function dp(size)
+{
+    return di.dp(size);
+}
+
+function log()
+{
+    di.log();
+}

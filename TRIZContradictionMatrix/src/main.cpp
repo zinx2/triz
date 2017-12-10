@@ -1,16 +1,16 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include "screeninfo.h"
+#include "displayinfo.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
-    ScreenInfo scrInfo;
+    DisplayInfo dpInfo;
 
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty("screen", &scrInfo);
+    engine.rootContext()->setContextProperty("di", &dpInfo);
     engine.load(QUrl(QLatin1String("qrc:/qml/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;

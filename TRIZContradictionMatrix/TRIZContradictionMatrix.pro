@@ -14,7 +14,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
   src/main.cpp \
-    src/screeninfo.cpp
+    src/displayinfo.cpp
 
 RESOURCES += qml.qrc \
     img.qrc
@@ -41,7 +41,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    src/screeninfo.h
+    src/displayinfo.h
 
 DISTFILES += \
     img/splash.jpg
