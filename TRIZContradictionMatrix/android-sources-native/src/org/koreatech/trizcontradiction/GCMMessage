@@ -1,0 +1,5 @@
+package org.koreatech.trizcontradiction;
+
+public class GCMMessage implements Serializable {
+
+}

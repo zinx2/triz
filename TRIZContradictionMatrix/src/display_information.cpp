@@ -1,4 +1,4 @@
-#include "displayinfo.h"
+#include "display_information.h"
 #include <QScreen>
 #include <QGuiApplication>
 #include <QDebug>

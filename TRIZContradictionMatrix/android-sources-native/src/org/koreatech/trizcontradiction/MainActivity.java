@@ -50,12 +50,15 @@
 
 package org.koreatech.trizcontradiction;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.view.Window;
 import android.view.WindowManager;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 
 
 public class MainActivity extends org.qtproject.qt5.android.bindings.QtActivity
@@ -65,26 +68,36 @@ public class MainActivity extends org.qtproject.qt5.android.bindings.QtActivity
     {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+        Log.i("DEVICE ID >> ", getDeviceId());
     }
-//    private static NotificationManager m_notificationManager;
-//    private static Notification.Builder m_builder;
-//    private static NotificationClient m_instance;
 
-//    public NotificationClient()
-//    {
-//        m_instance = this;
-//    }
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+//        MainApplication.setCurrentActivity(this);
+        resume();
+    }
 
-//    public static void notify(String s)
-//    {
-//        if (m_notificationManager == null) {
-//            m_notificationManager = (NotificationManager)m_instance.getSystemService(Context.NOTIFICATION_SERVICE);
-//            m_builder = new Notification.Builder(m_instance);
-//            m_builder.setSmallIcon(R.drawable.icon);
-//            m_builder.setContentTitle("A message from Qt!");
-//        }
+    @Override
+    protected void onPause() {
+        pause();
+        super.onPause();
+    }
 
-//        m_builder.setContentText(s);
-//        m_notificationManager.notify(1, m_builder.build());
-//    }
+    private native void resume();
+    private native void pause();
+
+    public String getDeviceId()
+    {
+        String deviceId = "";
+        final TelephonyManager tm = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String imei = tm.getImei();
+            deviceId = imei == null? tm.getMeid() : imei;
+        } else {
+            deviceId = tm.getDeviceId();
+        }
+        return deviceId;
+    }
 }
