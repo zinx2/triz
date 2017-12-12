@@ -49,3 +49,17 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     img/splash.jpg
+
+#ANDROID
+DISTFILES += $$files(android-sources-native/*.*)
+DISTFILES += $$files(android-sources-native/src/org/koreatech/trizcontradiction/*.*)
+#DISTFILES += $$files(android-sources-native/libs/*.*)
+DISTFILES += $$files(android-sources-native/res/*.*)
+DISTFILES += $$files(android-sources-native/res/layout/*.*)
+DISTFILES += $$files(android-sources-native/res/values/*.*)
+DISTFILES += $$files(android-sources-native/res/values-ko/*.*)
+DISTFILES += $$files(android-sources-native/res/drawable/*.*)
+DISTFILES += $$files(android-sources-native/res/drawable-mdpi/*.*)
+DISTFILES += $$files(android-sources-native/res/drawable-hdpi/*.*)
+DISTFILES += $$files(android-sources-native/res/drawable-xhdpi/*.*)
+DISTFILES += $$files(android-sources-native/res/drawable-xxhdpi/*.*)

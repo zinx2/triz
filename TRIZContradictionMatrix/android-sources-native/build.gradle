@@ -18,9 +18,7 @@ apply plugin: 'com.android.application'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    /* LATEST VERSION : https://developers.google.com/android/guides/setup */
-    compile 'com.google.android.gms:play-services:11.6.0'
+    compile 'com.google.android.gms:play-services:11.0.4'
 }
 
 android {
@@ -56,5 +54,9 @@ android {
 
     lintOptions {
         abortOnError false
+    }
+
+    dexOptions {
+        javaMaxHeapSize = "3g"
     }
 }
