@@ -1,7 +1,6 @@
 #import <UIKit/UIKit.h>
 #import <QtGui/QtGui>
+#import <UserNotifications/UserNotifications.h>
 
-#import "qiosviewcontroller.h"
-
-@interface QIOSApplicationDelegate : UIResponder <UIApplicationDelegate>
+@interface QIOSApplicationDelegate : UIResponder <UIApplicationDelegate, UNUserNotificationCenterDelegate>
 @end
