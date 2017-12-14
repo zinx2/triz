@@ -33,6 +33,18 @@ android {
     HEADERS += $$files(android-sources-qt/*.h)
 }
 
+ios {
+    OBJECTIVE_SOURCES += \
+        $$files(ios-sources-native/*.h) \
+        $$files(ios-sources-native/*.m) \
+        $$files(ios-sources-native/*.mm) \
+
+    assets_catalogs.files = $$files($$PWD/ios-sources-native/*.xcassets)\
+                            $$PWD/ios-sources-native/SplashLaunchScreen.xib
+    QMAKE_BUNDLE_DATA += assets_catalogs
+    QMAKE_INFO_PLIST = $$PWD/ios-sources-native/info.plist
+
+}
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -63,3 +75,9 @@ DISTFILES += $$files(android-sources-native/res/drawable-mdpi/*.*)
 DISTFILES += $$files(android-sources-native/res/drawable-hdpi/*.*)
 DISTFILES += $$files(android-sources-native/res/drawable-xhdpi/*.*)
 DISTFILES += $$files(android-sources-native/res/drawable-xxhdpi/*.*)
+
+#IOS
+DISTFILES += $$files(ios-sources-native/*.*)
+DISTFILES += $$files(ios-sources-native/Images.xcassets/*.*)
+DISTFILES += $$files(ios-sources-native/Images.xcassets/AppIcon.appiconset/*.*)
+DISTFILES += $$files(ios-sources-native/Images.xcassets/LaunchImage.launchimage/*.*)
