@@ -1,8 +1,11 @@
 #include "src/native_app.h"
 #include "UIKit/UIKit.h"
-//#import "appdelegate.h"
-#import <UserNotifications/UserNotifications.h>
-#import "AudioToolBox/AudioToolBox.h"
+
+/* IF YOU WANT TO USE THE IMPLEMENTATION, PLEASE ADD LIBRARY AT 'Build Phases' USING 'Xcode' PROGRAM. */
+#import "UserNotifications/UserNotifications.h"     /* -> 'UserNotifications.framework' */
+#import "AudioToolBox/AudioToolBox.h"               /* -> 'AudioToolbox.framework' */
+/*********************************************/
+
 #include <QtCore>
 
 #define isOSVersionOver10 ([[[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."] objectAtIndex:0] integerValue] >= 10)
@@ -18,8 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [self initializeRemoteNotification];
-    
+    [self initializeRemoteNotification];    
     return YES;
 }
 
@@ -30,10 +32,11 @@
         //center.delegate = self;
         [center requestAuthorizationWithOptions:(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error) {
             if(!error) {
-                //푸시 서비스 등록 성공
+                /* WHEN ENROLLED SUCCESSFULLY PUSH SERVICE, */
                 [[UIApplication sharedApplication] registerForRemoteNotifications];
             } else {
-                //푸시 서비스 등록 실패
+                /* WHEN WAS ABLED TO ENROLLE SUCCESSFULLY PUSH SERVICE, */
+
             }
         }];
     } else {
@@ -45,6 +48,7 @@
     }
 }
 
+/* GET THE DEVICE TOKEN. */
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(nonnull NSData *)deviceToken
 {
     NSMutableString *tokenHex = [NSMutableString stringWithString:[deviceToken description]];
@@ -53,32 +57,28 @@
     [tokenHex replaceOccurrencesOfString:@" " withString:@"" options:0 range:NSMakeRange(0, [tokenHex length])];
     NSLog(@"Token origin : %@", deviceToken);
     NSLog(@"Token : %@", tokenHex);
-    //    NSString* token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
-    //token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
-    //    NSLog(@"DeviceToken : %@", token);
 }
 
-// iOS9 이하 푸시 Delegate
+/* iOS <= 9.0 : PUSH DELEGATE */
 #pragma mark - Remote Notification Delegate <= iOS 9.x
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(nonnull UIUserNotificationSettings *)notificationSettings
 {
     [application registerForRemoteNotifications];
-    //    if ((notificationSettings.types & 1) == UIUserNotificationTypeNone) {
-    //        NSLog(@"user selected NO");
-    //    } else {
-    //        NSLog(@"user selected YES");
-    //        [application registerForRemoteNotifications];
-    //    }
 }
 
-//푸시 데이터 들어오는 함수
+/* PROCESSING PUSH DATA */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler
 {
     NSLog(@"userInfo : %@", userInfo);
-    //    NSDictionary* payload = [userInfo objectForKey:@"aps"];
-    //    NSString *message = [payload objectForKey:@"alert"];
-    //    NSString *soundName = [payload objectForKey:@"sound"];
-    //
+
+    /* TO RECEIVE AT PAYLOAD, PLEASE USE THE FOLLOWING LINES
+           - NSDictionary* payload = [userInfo objectForKey:@"aps"];
+           - NSString *message = [payload objectForKey:@"alert"];
+           - NSString *soundName = [payload objectForKey:@"sound"]; */
+
+    /* TO BOOL VALUE, USE LIKE THIS
+           - BOOL isShow = [[userInfo objectForKey:@"show"] boolValue]; */
+
     int type = [[userInfo objectForKey:@"type"] intValue];
     NSLog(@"type : %d", type);
     
@@ -97,53 +97,46 @@
         NSLog(@"FOREGROUND");
         completionHandler(UIBackgroundFetchResultNewData);
     }
-    //    BOOL isShow = [[userInfo objectForKey:@"show"] boolValue];
-    //
 
-    //    NSLog(@"show : %d", isShow );
-    //
-    //    if(application.applicationState == UIApplicationStateActive)
-    //    {
-    //        NSLog(@"App is Active");
-    //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ALERT" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    //        [alert show];
-    //
-    //
-    //
-    //    } else {
-    //        NSLog(@"App is Inactive");
-    //        UILocalNotification *notification = [[UILocalNotification alloc]init];
-    //        notification.timeZone = [NSTimeZone systemTimeZone];
-    //        notification.alertBody = message;
-    //        [notification setSoundName:soundName];
-    //                //notification.soundName = UILocalNotificationDefaultSoundName;
-    //        [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-    //    }
-    //AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+
+    /* IF WANT TO ALERT USING VIEW, PLEASE USE THE FOLLOWING LINES
+            - UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ALERT" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            - [alert show]; */
+
+    /* YOU CAN SET NOTIFICATION OPTION USING THE FOLLOWING LINES
+            - UILocalNotification *notification = [[UILocalNotification alloc]init];
+            - notification.timeZone = [NSTimeZone systemTimeZone];
+            - notification.alertBody = message;
+            - [notification setSoundName:soundName];
+            - notification.soundName = UILocalNotificationDefaultSoundName;
+            - [[UIApplication sharedApplication] presentLocalNotificationNow:notification]; */
+
+    /* USE THE FOWLLONG LINE, IF YOU WANT TO USE VIBRATE OPTION
+            - AudioServicesPlayAlertSound(kSystemSoundID_Vibrate); */
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(nonnull NSError *)error {
     NSLog(@"Error : %@", error);
 }
 
-//iOS10 이상 푸시 Delegate
+/* iOS >= 10 : PUSH DELEGATE */
 #pragma mark - UNUserNotificationCenter Delegate for >= iOS 10
-//앱이 실행되고 있을 때 푸시 데이터 처리
+/* WHEN EXECUTING THE APP, PROCESS PUSH DATA */
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(nonnull UNNotification *)notification withCompletionHandler:(nonnull void (^)(UNNotificationPresentationOptions))completionHandler {
     NSLog(@"Remote notification : %@", notification.request.content.userInfo);
     int type = [[notification.request.content.userInfo objectForKey:@"type"] intValue];
     NSLog(@"type : %d", type);
 
-    //푸시 배너 띄워줌
+    /* FLOAT PUSH BANNER */
     completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionBadge);
 }
 
-//앱이 백그라운드나 종료된 상태에서 푸시 데이터 처리
+/* WHEN EXECUTING THE APP BEHIND BACKGROUND OR QUITTED, PROCESS PUSH DATA */
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(nonnull UNNotificationResponse *)response withCompletionHandler:(nonnull void (^)(void))completionHandler {
     NSLog(@"Remote notification : %@", response.notification.request.content.userInfo);
     int type = [[response.notification.request.content.userInfo objectForKey:@"type"] intValue];
     NSLog(@"type : %d", type);
-    completionHandler();
+    completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionBadge);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
