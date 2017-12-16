@@ -27,7 +27,7 @@ RESOURCES += qml.qrc \
 android {
     QT += androidextras
 
-    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-sources-native
+    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-sources-native/app
 
     SOURCES += $$files(android-sources-qt/*.cpp)
     HEADERS += $$files(android-sources-qt/*.h)
@@ -63,18 +63,22 @@ DISTFILES += \
     img/splash.jpg
 
 #ANDROID
-DISTFILES += $$files(android-sources-native/*.*)
-DISTFILES += $$files(android-sources-native/src/org/koreatech/trizcontradiction/*.*)
+DISTFILES += $$files(android-sources-native/app/*.*)
+DISTFILES += $$files(android-sources-native/app/src/org/koreatech/trizcontradiction/*.*)
 #DISTFILES += $$files(android-sources-native/libs/*.*)
-DISTFILES += $$files(android-sources-native/res/*.*)
-DISTFILES += $$files(android-sources-native/res/layout/*.*)
-DISTFILES += $$files(android-sources-native/res/values/*.*)
-DISTFILES += $$files(android-sources-native/res/values-ko/*.*)
-DISTFILES += $$files(android-sources-native/res/drawable/*.*)
-DISTFILES += $$files(android-sources-native/res/drawable-mdpi/*.*)
-DISTFILES += $$files(android-sources-native/res/drawable-hdpi/*.*)
-DISTFILES += $$files(android-sources-native/res/drawable-xhdpi/*.*)
-DISTFILES += $$files(android-sources-native/res/drawable-xxhdpi/*.*)
+DISTFILES += $$files(android-sources-native/app/res/*.*)
+DISTFILES += $$files(android-sources-native/app/res/layout/*.*)
+DISTFILES += $$files(android-sources-native/app/res/values/*.*)
+DISTFILES += $$files(android-sources-native/app/res/values-ko/*.*)
+DISTFILES += $$files(android-sources-native/app/res/drawable/*.*)
+DISTFILES += $$files(android-sources-native/app/res/drawable-v24/*.*)
+DISTFILES += $$files(android-sources-native/app/res/mipmap-anydpi-v26/*.*)
+DISTFILES += $$files(android-sources-native/app/res/mipmap-hdpi/*.*)
+DISTFILES += $$files(android-sources-native/app/res/mipmap-mdpi/*.*)
+DISTFILES += $$files(android-sources-native/app/res/mipmap-xhdpi/*.*)
+DISTFILES += $$files(android-sources-native/app/res/mipmap-xxhdpi/*.*)
+DISTFILES += $$files(android-sources-native/app/res/mipmap-xxxhdpi/*.*)
+
 
 #IOS
 DISTFILES += $$files(ios-sources-native/*.*)

@@ -8,5 +8,8 @@ build-TRIZContradictionMatrix-Qt_5_9_3_for_iOS-Debug
 TRIZContradictionMatrix/ios-sources-native/.DS_Store
 TRIZContradictionMatrix/.DS_Store
 build-TRIZContradictionMatrix-Qt_5_9_3_for_iOS-Debug
-build-TRIZContradictionMatrix-Qt_5_9_3_for_iOS-Debug/TRIZContradictionMatrix.entitlements
-build-TRIZContradictionMatrix-Qt_5_9_3_for_iOS-Debug/TRIZContradictionMatrix.entitlements
+build-TRIZ11
+build-TRIZ22
+TRIZContradictionMatrix/android-sources-native/.idea
+TRIZContradictionMatrix/TRIZContradictionMatrix.pro.user
+TRIZContradictionMatrix/TRIZContradictionMatrix.pro.user.eb14293
