@@ -3,26 +3,21 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import "Resources.js" as R
 
-Rectangle {
+Paper {
     id: mainView
-
-    color:"blue"
-
-    Component.onCompleted: {
-        R.log();
-        console.log(R.dp(150));
-    }
-
-    ColumnLayout
-    {
-        id:columnLayout
-        Rectangle
-        {
-            id: titleBar
-            height: R.dp(150)
-            width: R.dp(150)//mainView.width
-            color: "Red"
-        }
+    width: parent.width
+    height: parent.height
+    //color: "#ffff00"
+//    ColumnLayout
+//    {
+//        id:columnLayout
+//        Rectangle
+//        {
+//            id: titleBar
+//            height: R.dp(150)
+//            width: R.dp(150)//mainView.width
+//            color: "Red"
+//        }
 
 //        SwipeView {
 //            id: view
@@ -49,7 +44,7 @@ Rectangle {
 //                stackView.push("Page.qml");
 //            }
 //        }
-    }
+//    }
 
 
 //    Button {
