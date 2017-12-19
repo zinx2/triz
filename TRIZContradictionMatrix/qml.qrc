@@ -5,6 +5,10 @@
         <file>qml/MainView.qml</file>
         <file>qml/Resources.js</file>
         <file>qml/Paper.qml</file>
-        <file>qml/ButtonImage.qml</file>
+        <file>qml/MatrixView.qml</file>
+        <file>qml/qwqw.qml</file>
+        <file>qml/ButtonText.qml</file>
+        <file>qml/ExtendedText.qml</file>
+        <file>qml/ExtendedButton.qml</file>
     </qresource>
 </RCC>

@@ -22,7 +22,8 @@ SOURCES += \
     src/display_information.cpp
 
 RESOURCES += qml.qrc \
-    img.qrc
+    img.qrc \
+    font.qrc
 
 android {
     QT += androidextras

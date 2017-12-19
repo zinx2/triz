@@ -22,7 +22,7 @@ Rectangle {
   property string pressedImageSource : imageSource
   property string hoverImageSource : imageSource
 
-  property int     imageRotation : 0
+  property int    imageRotation : 0
 
   property real   sourceSize : R.pt(25)  //아이콘사이즈
   property real   sourceWidth : sourceSize
@@ -30,16 +30,22 @@ Rectangle {
 
   property color inactiveColor : "gray"
   property color rectColor : "transparent"
-  property color pressedColor : rectColor
+  property color pressedColor : R.color_buttonPressed//rectColor
   property color hoverdColor : rectColor
 
   property bool  active : true ;
 
   property bool  hoverEnabled: false
   property int     mouseAreaMargin : -R.MARGIN_XS
+  property string type : "text"
+  property int   fontSize: 10
+  property string textColor: "black"
+  property bool  fontBold: false
+  property string btnName: "Button"
 
   Image {
     id:img
+    visible: type=="image"
     source: {
       if( ma.containsMouse ) ma.pressed&&pressedImageSource!="" ?pressedImageSource : hoverImageSource
       else imageSource
@@ -49,6 +55,32 @@ Rectangle {
     fillMode:  Image.PreserveAspectFit
     rotation: imageRotation
     anchors.centerIn: parent
+  }
+
+  ExtendedText {
+      id:txt
+      visible: type=="text"
+      text: btnName
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.horizontalCenter: parent.horizontalCenter
+      width: sourceWidth
+      height: sourceHeight
+      horizontalAlignment: Text.AlignHCenter
+      verticalAlignment: Text.AlignVCenter
+//      anchors{verticalCenter:parent.verticalCenter;
+//          horizontalCenter: if(align==1) parent.horizontalCenter
+//          left: if(align==0) parent.left
+//          margins: btn.margins
+//      }
+      font.pixelSize: fontSize
+      color: textColor
+//      color: ma.pressed? pressedTextColor :textColor
+      style :Text.Outline;
+//      styleColor: textStrokeColor
+      font.bold: fontBold
+
+//      lineHeight: btn.lineHeight
+//        fontType: btn.fontType
   }
 
   MouseArea {

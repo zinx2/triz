@@ -6,7 +6,7 @@ import QtQuick.Controls.Styles 1.4
 ApplicationWindow {
     id: appWindow
     visible: true
-    width: 500
+    width: 1500
     height: 888
     title: qsTr("Triz Contradiction Matrix")
 

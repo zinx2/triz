@@ -4,26 +4,31 @@ import QtQuick.Layouts 1.3
 import "Resources.js" as R
 
 Rectangle {
+
+    property bool visibleBackBtn : true
+
     width: parent.width
-    height: parent.height
+    height: parent.height    
 
     Rectangle
     {
         id: titleBar
-        height: R.dp(144)
+        height: R.height_titlaBar
         width: parent.width
         color: R.color_appTitlebar
 
-        ButtonImage
+        ExtendedButton
         {
             id: btnBack
             x: 0; y: 0
+            visible: visibleBackBtn
             width: parent.height
             height: parent.height
             hoverEnabled: true
             sourceWidth: R.dp(100)
             sourceHeight: R.dp(100)
-            pressedColor: "gray"
+
+            type: "image"
             on_Clicked:
             {
                 console.log("CLICKED111");
@@ -41,7 +46,6 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             font.pointSize: R.pt(50)
         }
-
     }
 
     //        SwipeView {
