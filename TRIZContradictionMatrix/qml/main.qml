@@ -2,6 +2,7 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Styles 1.4
+import "Resources.js" as R
 
 ApplicationWindow {
     id: appWindow
@@ -29,6 +30,10 @@ ApplicationWindow {
         initialItem: MainView
         {
             id: mainView
+            onPush:
+            {
+                stackView.push();
+            }
         }
     }
 
@@ -40,7 +45,7 @@ ApplicationWindow {
         Image
         {
             anchors.centerIn: parent
-            source: "../img/splash.jpg"
+            source: R.image("splash.jpg")
         }
         Behavior on opacity { NumberAnimation { duration: 1000 ;easing.type: Easing.OutQuad}  }
     }

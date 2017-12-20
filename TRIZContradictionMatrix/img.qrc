@@ -2,5 +2,8 @@
     <qresource prefix="/">
         <file>img/splash.jpg</file>
         <file>img/back_white.png</file>
+        <file>img/extendable.png</file>
+        <file>img/extended.png</file>
+        <file>img/rectangle.png</file>
     </qresource>
 </RCC>

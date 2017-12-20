@@ -13,6 +13,7 @@ var color_appTitlebar = "#272e36"
 var color_appTitleText = "#ffffff"
 var color_buttonPressed = "#44000000"
 var color_bgColor001 = "#e4e5e9"
+var color_buttonColor001 = "#272e36"
 
 var MARGIN_XL     =   pt(45)//80
 var MARGIN_L      =  pt(37.5)//72

@@ -10,5 +10,8 @@
         <file>qml/ButtonText.qml</file>
         <file>qml/ExtendedText.qml</file>
         <file>qml/ExtendedButton.qml</file>
+        <file>qml/ExtendableLabel.qml</file>
+        <file>qml/Subtitle.qml</file>
+        <file>qml/Margin.qml</file>
     </qresource>
 </RCC>

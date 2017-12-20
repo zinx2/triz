@@ -75,7 +75,7 @@ Rectangle {
       font.pointSize: fontSize
       color: textColor
 //      color: ma.pressed? pressedTextColor :textColor
-      style :Text.Outline;
+//      style :Text.Outline;
 //      styleColor: textStrokeColor
       font.bold: fontBold
 

@@ -13,108 +13,287 @@ Paper {
     {
         id: mainColumn
         width: parent.width
-        height: R.dp(144)
+        height: parent.width - R.dp(144)
         y: R.height_titlaBar
 
         Rectangle
         {
-            id: selectorView
+            id: selectView
             width: parent.width
-            height: (mainView.height - R.height_titlaBar) / 2
+            height: R.dp(461)
             color: R.color_bgColor001
 
-            Row
+            Column
             {
-                id: rowButtons
-                width: R.dp(600)
-                height: R.dp(150)
-                anchors.right: parent.right
-                ExtendedButton
+                width: parent.width
+                height: parent.height
+                spacing: R.dp(20)
+                Row
                 {
-                    type: "text"
-                    btnName: "모순행렬이란?"
-                    fontSize: R.pt(40)
-                    pressedColor: R.color_buttonPressed
-                    sourceWidth: rowButtons.width / 2 //R.dp(300)
-                    sourceHeight: rowButtons.height //R.dp(150)
-                    on_Clicked:
+                    id: rowButtons
+                    width: R.dp(410)
+                    height: R.dp(80)
+                    spacing: R.dp(10)
+                    anchors
                     {
-                        console.log("모순행렬");
-                        //                stackView.push("Page.qml");
+                        right: parent.right
+                        rightMargin: R.dp(10)
+                    }
+                    ExtendedButton
+                    {
+                        type: "text"
+                        btnName: "모순행렬이란?"
+                        fontSize: R.pt(20)
+                        pressedColor: R.color_buttonPressed
+                        sourceWidth: rowButtons.width / 2 //R.dp(300)
+                        sourceHeight: rowButtons.height //R.dp(150)
+                        on_Clicked:
+                        {
+                            console.log("모순행렬");
+                            stackView.push("MatrixView.qml");
+                        }
+                    }
+
+
+
+                    ExtendedButton
+                    {
+                        type: "text"
+                        btnName: "공학변수 보기"
+                        fontSize: R.pt(20)
+                        pressedColor: R.color_buttonPressed
+                        sourceWidth: rowButtons.width / 2 //R.dp(300)
+                        sourceHeight: rowButtons.height
+                        on_Clicked:
+                        {
+                            console.log("공학변수 보기");
+                            //                stackView.push("Page.qml");
+                        }
                     }
                 }
 
-                ExtendedButton
+                Subtitle
                 {
-                    type: "text"
-                    btnName: "공학변수 보기"
-                    fontSize: R.pt(40)
-                    pressedColor: R.color_buttonPressed
-                    sourceWidth: rowButtons.width / 2 //R.dp(300)
-                    sourceHeight: rowButtons.height
-                    on_Clicked:
+                    anchors
                     {
-                        console.log("공학변수 보기");
-                        //                stackView.push("Page.qml");
+                        left: parent.left
+                        leftMargin: R.dp(20)
                     }
+                    title : "개선되는 특성"
+                }
+
+                ComboBox
+                {
+                    width: parent.width
+                    height: R.dp(50)
+                    anchors
+                    {
+                        left: parent.left
+                        leftMargin: R.dp(20)
+                        right: parent.right
+                        rightMargin: R.dp(20)
+                    }
+
+                    model: [ "A", "B", "C", "D" ]
+                }
+                Margin { }
+
+                Subtitle
+                {
+                    anchors
+                    {
+                        left: parent.left
+                        leftMargin: R.dp(20)
+                    }
+                    title : "악화되는 특성"
+                }
+
+                ComboBox
+                {
+                    width: parent.width
+                    height: R.dp(50)
+                    anchors
+                    {
+                        left: parent.left
+                        leftMargin: R.dp(20)
+                        right: parent.right
+                        rightMargin: R.dp(20)
+                    }
+
+                    model: [ "A", "B", "C", "D" ]
+                }
+            }
+
+            ExtendedButton
+            {
+                type: "text"
+                btnName: "발명원리 탐색"
+                fontSize: R.pt(20)
+                pressedColor: R.color_buttonPressed
+                rectColor: R.color_buttonColor001
+                textColor: "white"
+                sourceWidth: R.dp(220)
+                sourceHeight: R.dp(80)
+                radius: 10
+                anchors
+                {
+                    right: parent.right
+                    rightMargin: R.dp(20)
+                    bottom: parent.bottom
+                    bottomMargin: R.dp(20)
+                }
+
+                on_Clicked:
+                {
+                    console.log("공학변수 보기");
+                    //                stackView.push("Page.qml");
                 }
             }
         }
+
 
         Rectangle
         {
             id: resultView
             width: parent.width
-            height: (mainView.height - R.height_titlaBar) / 2
-            color: "yellow"
+            height: mainView.height - selectView.height
+            color: "white"
+
+            Subtitle
+            {
+                id: subtitle
+                anchors
+                {
+                    top: parent.top
+                    topMargin: R.dp(20)
+                    left: parent.left
+                    leftMargin: R.dp(20)
+                }
+                title : "도출되는 발명원리 목록"
+            }
+
+            ListModel {
+                id: model
+                ListElement {
+                    name: "Bill Smith"
+                    number: "555 3264"
+                }
+                ListElement {
+                    name: "John Brown"
+                    number: "555 8426"
+                }
+                ListElement {
+                    name: "Sam Wise"
+                    number: "555 0473"
+                }
+                ListElement {
+                    name: "Bill Smith"
+                    number: "555 3264"
+                }
+                ListElement {
+                    name: "John Brown"
+                    number: "555 8426"
+                }
+                ListElement {
+                    name: "Sam Wise"
+                    number: "555 0473"
+                }
+                ListElement {
+                    name: "Bill Smith"
+                    number: "555 3264"
+                }
+                ListElement {
+                    name: "John Brown"
+                    number: "555 8426"
+                }
+                ListElement {
+                    name: "Sam Wise"
+                    number: "555 0473"
+                }
+                ListElement {
+                    name: "Bill Smith"
+                    number: "555 3264"
+                }
+                ListElement {
+                    name: "John Brown"
+                    number: "555 8426"
+                }
+                ListElement {
+                    name: "Sam Wise"
+                    number: "555 0473"
+                }
+                ListElement {
+                    name: "Bill Smith"
+                    number: "555 3264"
+                }
+                ListElement {
+                    name: "John Brown"
+                    number: "555 8426"
+                }
+                ListElement {
+                    name: "Sam Wise"
+                    number: "555 0473"
+                }
+                ListElement {
+                    name: "Bill Smith"
+                    number: "555 3264"
+                }
+                ListElement {
+                    name: "John Brown"
+                    number: "555 8426"
+                }
+                ListElement {
+                    name: "Sam Wise"
+                    number: "555 0473"
+                }
+                ListElement {
+                    name: "Bill Smith"
+                    number: "555 3264"
+                }
+                ListElement {
+                    name: "John Brown"
+                    number: "555 8426"
+                }
+                ListElement {
+                    name: "Sam Wise"
+                    number: "555 0473"
+                }
+                ListElement {
+                    name: "Bill Smith"
+                    number: "555 3264"
+                }
+                ListElement {
+                    name: "John Brown"
+                    number: "555 8426"
+                }
+                ListElement {
+                    name: "Sam Wise"
+                    number: "555 0473"
+                }
+            }
+
+
+            ListView {
+                width: parent.width
+                height: parent.height - subtitle.height
+                anchors
+                {
+                    top: subtitle.bottom
+                    topMargin: R.dp(20)
+                    left: parent.left
+                    leftMargin: R.dp(20)
+                    right: parent.right
+                    rightMargin: R.dp(20)
+                    bottom: parent.bottom
+                    bottomMargin: R.dp(20)
+                }
+
+                model: model
+                delegate: ExtendableLabel {
+                    title_ko: name + ": " + number
+                }
+            }
         }
     }
-
-    //color: "#ffff00"
-    //    ColumnLayout
-    //    {
-    //        id:columnLayout
-    //        Rectangle
-    //        {
-    //            id: titleBar
-    //            height: R.dp(150)
-    //            width: R.dp(150)//mainView.width
-    //            color: "Red"
-    //        }
-
-    //        SwipeView {
-    //            id: view
-
-    //            currentIndex: 1
-    //            width: parent.width
-    //            height: parent.height - titleBar.height
-
-    //            Item {
-    //                id: firstPage
-    //            }
-    //            Item {
-    //                id: secondPage
-    //            }
-    //            Item {
-    //                id: thirdPage
-    //            }
-    //        }
-    ////        Button
-    //        {
-    //            text: "BACK"
-    //            onClicked:
-    //            {
-    //                stackView.push("Page.qml");
-    //            }
-    //        }
-    //    }
-
-
-    //    Button {
-    //        width: R.dp(50)
-    //        height: R.dp(50)
-    //        onClicked: {
-    //            console.log(R.sz(500));
-    //        }
-    //    }
 }
+
