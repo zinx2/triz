@@ -28,7 +28,7 @@ public:
     int   height     ;
 //    qreal dpi        ;
 //    qreal hdpi       ;
-    qreal m_ratio    ;
-    qreal m_ratioFont;
+    qreal m_ratio    = 1.0;
+    qreal m_ratioFont = 1.0;
 //    qreal dpiFactor  ;
 };

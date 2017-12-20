@@ -44,7 +44,7 @@ Rectangle {
             color: R.color_appTitleText
             horizontalAlignment : Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
-            font.pointSize: R.pt(50)
+            font.pointSize: R.pt(26)
         }
     }
 

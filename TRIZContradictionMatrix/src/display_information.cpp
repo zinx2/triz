@@ -46,19 +46,50 @@ DisplayInfo::DisplayInfo(/*int dpWidth,*/QObject *parent)
 //      dpiFactor = 4.0 / density;*/
 //  #endif
 
-    qreal refDpi = 72.;
-    qreal refHeight = 1776.;
-    qreal refWidth = 1080.;
-    QRect rect = QGuiApplication::primaryScreen()->geometry();
-    qreal height = qMax(rect.width(), rect.height());
-    qreal width = qMin(rect.width(), rect.height());
-    qreal dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
-    m_ratio = qMin(height/refHeight, width/refWidth);
-    m_ratioFont = qMin(height*refDpi/(dpi*refHeight), width*refDpi/(dpi*refWidth));
+//QSize logicalSize = QGuiApplication::primaryScreen()->size();
+//QSizeF physicalSize = QGuiApplication::primaryScreen()->physicalSize();
 
-    #if defined(Q_OS_ANDROID)
-        m_ratioFont *= 4/3;
-    #endif
+
+
+//    qreal refDpi = 252.;
+////    qreal refHeight = 1080.;
+////    qreal refWidth = 1776.;
+//    QRect rect = QGuiApplication::primaryScreen()->geometry();
+//    qreal height = qMax(rect.width(), rect.height());
+//    qreal width = qMin(rect.width(), rect.height());
+//    qreal dotsLogical = QGuiApplication::primaryScreen()->logicalDotsPerInch();
+//    qDebug() << "logicalDotsPerInch ::: " << dotsLogical;
+//    qreal dotsPhysical = qApp->primaryScreen()->physicalDotsPerInch();
+//    qDebug() << "physicalDotsPerInch ::: " << dotsPhysical;
+
+
+//    qDebug() << "logicalSize :: " << logicalSize;
+//    qDebug() << "physicalSize :: " << physicalSize;
+//    qDebug() << "availableSize :: " << QGuiApplication::primaryScreen()->availableSize();
+//    qDebug() << "WIDTH/HEIGHT :: " << QGuiApplication::primaryScreen()->geometry().size();
+//    qDebug() << "virualSize :: " << QGuiApplication::primaryScreen()->virtualSize();
+//    m_ratio = qMin(height/refHeight, width/refWidth);
+//    m_ratioFont = qMin(height*refDpi/(dpi*refHeight), width*refDpi/(dpi*refWidth));
+
+//    #if defined(Q_OS_ANDROID)
+//      m_ratioFont = dotsLogical / dotsPhysical; //dotsPhysical; //4/3;
+//      m_ratio = refDpi / dotsLogical / 160.0;
+//    #endif
+
+      qreal refDpi = 189.;
+      qreal refHeight = 1920.;
+      QRect deviceRes = QGuiApplication::primaryScreen()->geometry();
+      m_ratio = deviceRes.height() / refHeight;
+
+      qreal dotsLogical = QGuiApplication::primaryScreen()->logicalDotsPerInch();
+      qreal dotsPhysical = QGuiApplication::primaryScreen()->physicalDotsPerInch();
+      m_ratioFont = (refDpi / dotsLogical) * m_ratio;
+
+      qDebug() << "dotsLogical :: " << dotsLogical;
+      qDebug() << "dotsPhysical :: " << dotsPhysical;
+      qDebug() << "ratio :: " << m_ratio;
+      qDebug() << "ratioFont :: " << m_ratioFont;
+      qDebug() << "resHeight :: " << deviceRes.height();
 }
 
 DisplayInfo::~DisplayInfo()
@@ -78,7 +109,9 @@ qreal DisplayInfo::pt(const int value) const
 
 qreal DisplayInfo::dp(const int value) const
 {
-    return qMax(2, int(value * m_ratio));
+    return int(value * m_ratio);
+//      return int(value / m_ratioFont);
+//    return qMax(2, int(value * m_ratio));
 }
 //qreal DisplayInfo::pt(double val) const
 //{
