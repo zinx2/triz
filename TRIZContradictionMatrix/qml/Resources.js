@@ -1,21 +1,11 @@
-function dp(size)
-{
-    return di.dp(size);
-}
-function pt(size)
-{
-    return di.pt(size);
-}
+function dp(size) { return di.dp(size); }
+function pt(size) { return di.pt(size); }
 
-function screenSize()
-{
-    return di.screenSize();
-}
-
-function log()
-{
-    di.log();
-}
+function log() { di.log(); }
+function image(name) { return "../img/" + name; }
+function font(name) { return "../font/" + name }
+function qml() { return "../qml/" + name }
+function os() { return Qt.platform.os; }
 
 var height_titlaBar = dp(144);
 

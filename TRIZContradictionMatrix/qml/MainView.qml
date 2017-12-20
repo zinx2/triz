@@ -33,7 +33,7 @@ Paper {
                 {
                     type: "text"
                     btnName: "모순행렬이란?"
-                    fontSize: R.dp(40)
+                    fontSize: R.pt(40)
                     pressedColor: R.color_buttonPressed
                     sourceWidth: rowButtons.width / 2 //R.dp(300)
                     sourceHeight: rowButtons.height //R.dp(150)
@@ -48,7 +48,7 @@ Paper {
                 {
                     type: "text"
                     btnName: "공학변수 보기"
-                    fontSize: R.dp(40)
+                    fontSize: R.pt(40)
                     pressedColor: R.color_buttonPressed
                     sourceWidth: rowButtons.width / 2 //R.dp(300)
                     sourceHeight: rowButtons.height

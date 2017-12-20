@@ -72,7 +72,7 @@ Rectangle {
 //          left: if(align==0) parent.left
 //          margins: btn.margins
 //      }
-      font.pixelSize: fontSize
+      font.pointSize: fontSize
       color: textColor
 //      color: ma.pressed? pressedTextColor :textColor
       style :Text.Outline;

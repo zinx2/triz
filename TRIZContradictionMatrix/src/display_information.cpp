@@ -46,7 +46,7 @@ DisplayInfo::DisplayInfo(/*int dpWidth,*/QObject *parent)
 //      dpiFactor = 4.0 / density;*/
 //  #endif
 
-    qreal refDpi = 96.;
+    qreal refDpi = 72.;
     qreal refHeight = 1776.;
     qreal refWidth = 1080.;
     QRect rect = QGuiApplication::primaryScreen()->geometry();
@@ -55,6 +55,10 @@ DisplayInfo::DisplayInfo(/*int dpWidth,*/QObject *parent)
     qreal dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
     m_ratio = qMin(height/refHeight, width/refWidth);
     m_ratioFont = qMin(height*refDpi/(dpi*refHeight), width*refDpi/(dpi*refWidth));
+
+    #if defined(Q_OS_ANDROID)
+        m_ratioFont *= 4/3;
+    #endif
 }
 
 DisplayInfo::~DisplayInfo()
