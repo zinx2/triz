@@ -3,12 +3,12 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import "Resources.js" as R
 
-    Rectangle {
+Rectangle {
 
     property bool visibleBackBtn : true
 
     width: parent.width
-    height: parent.height    
+    height: parent.height
 
     Rectangle
     {
@@ -32,7 +32,7 @@ import "Resources.js" as R
             on_Clicked:
             {
                 console.log("CLICKED111");
-//                stackView.push("Page.qml");
+                //                stackView.push("Page.qml");
             }
         }
 
@@ -46,6 +46,28 @@ import "Resources.js" as R
             verticalAlignment: Text.AlignVCenter
             font.pointSize: R.pt(26)
         }
+    }
+
+    StackView
+    {
+        id: stackView
+        anchors.fill: parent
+        visible: true
+        Keys.onReleased: if(event.key === Qt.Key_Back && StackView.depth > 1)
+                         {
+                             stackView.pop();
+                             event.accepted = true;
+                         }
+    }
+
+    function push(view)
+    {
+        stackView.push(view);
+    }
+
+    function pop()
+    {
+        stackView.pop();
     }
 
     //        SwipeView {

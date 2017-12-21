@@ -22,17 +22,17 @@ Paper {
         {
             id: selectView
             width: parent.width
-            height: R.dp(501)
+            height: layoutButtons1.height + subtitle1.height + combBox1.height + subtitle2.height + combBox2.height + layoutButtons2.height + R.dp(20) * 2 + R.dp(40) * 3
             color: R.color_bgColor001
 
             Column
             {
                 width: parent.width
                 height: parent.height
-                spacing: R.dp(20)
+
                 Row
                 {
-                    id: rowButtons
+                    id: layoutButtons1
                     width: R.dp(800)
                     height: R.dp(120)
                     anchors
@@ -45,12 +45,12 @@ Paper {
                         btnName: "모순행렬이란?"
                         fontSize: R.pt(20)
                         pressedColor: R.color_buttonPressed
-                        sourceWidth: rowButtons.width / 2 //R.dp(300)
-                        sourceHeight: rowButtons.height //R.dp(150)
+                        sourceWidth: layoutButtons1.width / 2 //R.dp(300)
+                        sourceHeight: layoutButtons1.height //R.dp(150)
                         on_Clicked:
                         {
                             console.log("모순행렬");
-                            stackView.push("MatrixView.qml");
+                            stackView.push(Qt.createComponent("MatrixView.qml"));
                         }
                     }
 
@@ -60,8 +60,8 @@ Paper {
                         btnName: "공학변수 보기"
                         fontSize: R.pt(20)
                         pressedColor: R.color_buttonPressed
-                        sourceWidth: rowButtons.width / 2 //R.dp(300)
-                        sourceHeight: rowButtons.height
+                        sourceWidth: layoutButtons1.width / 2 //R.dp(300)
+                        sourceHeight: layoutButtons1.height
                         on_Clicked:
                         {
                             console.log("공학변수 보기");
@@ -72,6 +72,7 @@ Paper {
 
                 Subtitle
                 {
+                    id: subtitle1
                     anchors
                     {
                         left: parent.left
@@ -79,9 +80,11 @@ Paper {
                     }
                     title : "개선되는 특성"
                 }
+                Margin { height: R.dp(20) }
 
                 ExtendedComboBox
                 {
+                    id: combBox1
                     width: parent.width
                     height: R.dp(100)
                     anchors
@@ -94,10 +97,11 @@ Paper {
 
                      model: opt.ds ? ds_model : md.eng
                 }
-                Margin { }
+                Margin { height: R.dp(40) }
 
                 Subtitle
                 {
+                    id: subtitle2
                     anchors
                     {
                         left: parent.left
@@ -105,11 +109,13 @@ Paper {
                     }
                     title : "악화되는 특성"
                 }
+                Margin { height: R.dp(20) }
 
-                ComboBox
+                ExtendedComboBox
                 {
+                    id: combBox2
                     width: parent.width
-                    height: R.dp(50)
+                    height: R.dp(100)
                     anchors
                     {
                         left: parent.left
@@ -118,37 +124,42 @@ Paper {
                         rightMargin: R.dp(40)
                     }
 
-                    model: [ "A", "B", "C", "D" ]
+                     model: opt.ds ? ds_model : md.eng
                 }
-            }
+                Margin { height: R.dp(40) }
 
-            ExtendedButton
-            {
-                type: "text"
-                btnName: "발명원리 탐색"
-                fontSize: R.pt(20)
-                pressedColor: R.color_buttonPressed
-                rectColor: R.color_buttonColor001
-                textColor: "white"
-                sourceWidth: R.dp(220)
-                sourceHeight: R.dp(80)
-                radius: 10
-                anchors
+                Row
                 {
-                    right: parent.right
-                    rightMargin: R.dp(20)
-                    bottom: parent.bottom
-                    bottomMargin: R.dp(20)
-                }
+                    id: layoutButtons2
+                    width: parent.width
+                    height: R.dp(80)
 
-                on_Clicked:
-                {
-                    console.log("공학변수 보기");
-                    //                stackView.push("Page.qml");
+                    ExtendedButton
+                    {
+                        type: "text"
+                        btnName: "발명원리 탐색"
+                        fontSize: R.pt(20)
+                        pressedColor: R.color_buttonPressed
+                        rectColor: R.color_buttonColor001
+                        textColor: "white"
+                        sourceWidth: R.dp(220)
+                        sourceHeight: R.dp(80)
+                        radius: 10
+                        anchors
+                        {
+                            right: parent.right
+                            rightMargin: R.dp(40)
+                        }
+
+                        on_Clicked:
+                        {
+                            console.log("공학변수 보기");
+                            //                stackView.push("Page.qml");
+                        }
+                    }
                 }
-            }
+            }            
         }
-
 
         Rectangle
         {

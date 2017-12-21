@@ -5,5 +5,5 @@ Paper {
     id: mainView
     width: parent.width
     height: parent.height
-
+    color: "blue"
 }
