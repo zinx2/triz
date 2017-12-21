@@ -3,7 +3,6 @@ import "Resources.js" as R
 
 Rectangle
 {
-
     id: extendableLabel
     width: parent.width
     height: extended ? R.dp(50) + detailData.height : R.dp(50)
@@ -12,7 +11,7 @@ Rectangle
     property string image_extendable: R.image("extendable.png")
     property string title_no: ""
     property string title_ko: ""
-    property string title_en: ""
+    property string title_en: ""    
     property string contents: ""
     property bool extended: false
     signal _clicked()
@@ -36,9 +35,37 @@ Rectangle
                 height: parent.height
                 Image
                 {
+                    anchors.verticalCenter: parent.verticalCenter
                     source: extended ? image_extended : image_extendable
                     width: R.dp(30)
                     height: R.dp(30)
+                }
+
+                ExtendedText
+                {
+                    id: noTxt
+                    text: title_no
+                    height: parent.height
+                    font.pointSize: R.pt(25)
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                ExtendedText
+                {
+                    id: koTxt
+                    text: title_ko
+                    height: parent.height
+                    font.pointSize: R.pt(25)
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                ExtendedText
+                {
+                    id: enTxt
+                    text: title_en
+                    height: parent.height
+                    font.pointSize: R.pt(25)
+                    verticalAlignment: Text.AlignVCenter
                 }
             }
 
@@ -64,12 +91,37 @@ Rectangle
         {
             id: detailData
             width: parent.width
-            height: detail.height //R.dp(30) //extended ? detail.height : 0
+            height: detail.contentHeight
             visible: extended
-            Text
+            anchors
             {
-                id: detail
-                text: "qQFQF"//contents
+                left: parent.left
+                leftMargin: R.dp(30)
+                right: parent.right
+                rightMargin: R.dp(70)
+            }
+
+            Row
+            {
+                width: parent.width
+                height: parent.height
+                spacing: R.dp(5)
+                Image
+                {
+                    source: image_extended
+                    width: R.dp(30)
+                    height: R.dp(30)
+                }
+
+                ExtendedTextEdit
+                {
+                    id: detail
+                    text: contents
+                    font.pointSize: R.pt(20)
+                    color: "black"
+                    wrapMode: TextEdit.Wrap
+
+                }
             }
         }
     }

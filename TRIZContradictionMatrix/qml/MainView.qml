@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+import QtQuick.Controls.Styles 1.4
+//import "concept" 1.0
 import "Resources.js" as R
 
 Paper {
@@ -13,14 +15,14 @@ Paper {
     {
         id: mainColumn
         width: parent.width
-        height: parent.width - R.dp(144)
+        height: parent.height - R.dp(144)
         y: R.height_titlaBar
 
         Rectangle
         {
             id: selectView
             width: parent.width
-            height: R.dp(461)
+            height: R.dp(501)
             color: R.color_bgColor001
 
             Column
@@ -31,13 +33,11 @@ Paper {
                 Row
                 {
                     id: rowButtons
-                    width: R.dp(410)
-                    height: R.dp(80)
-                    spacing: R.dp(10)
+                    width: R.dp(800)
+                    height: R.dp(120)
                     anchors
                     {
                         right: parent.right
-                        rightMargin: R.dp(10)
                     }
                     ExtendedButton
                     {
@@ -53,8 +53,6 @@ Paper {
                             stackView.push("MatrixView.qml");
                         }
                     }
-
-
 
                     ExtendedButton
                     {
@@ -82,19 +80,19 @@ Paper {
                     title : "개선되는 특성"
                 }
 
-                ComboBox
+                ExtendedComboBox
                 {
                     width: parent.width
-                    height: R.dp(50)
+                    height: R.dp(100)
                     anchors
                     {
                         left: parent.left
-                        leftMargin: R.dp(20)
+                        leftMargin: R.dp(40)
                         right: parent.right
-                        rightMargin: R.dp(20)
+                        rightMargin: R.dp(40)
                     }
 
-                    model: [ "A", "B", "C", "D" ]
+                     model: opt.ds ? ds_model : md.eng
                 }
                 Margin { }
 
@@ -115,9 +113,9 @@ Paper {
                     anchors
                     {
                         left: parent.left
-                        leftMargin: R.dp(20)
+                        leftMargin: R.dp(40)
                         right: parent.right
-                        rightMargin: R.dp(20)
+                        rightMargin: R.dp(40)
                     }
 
                     model: [ "A", "B", "C", "D" ]
@@ -156,7 +154,7 @@ Paper {
         {
             id: resultView
             width: parent.width
-            height: mainView.height - selectView.height
+            height: mainColumn.height - selectView.height
             color: "white"
 
             Subtitle
@@ -172,110 +170,10 @@ Paper {
                 title : "도출되는 발명원리 목록"
             }
 
-            ListModel {
-                id: model
-                ListElement {
-                    name: "Bill Smith"
-                    number: "555 3264"
-                }
-                ListElement {
-                    name: "John Brown"
-                    number: "555 8426"
-                }
-                ListElement {
-                    name: "Sam Wise"
-                    number: "555 0473"
-                }
-                ListElement {
-                    name: "Bill Smith"
-                    number: "555 3264"
-                }
-                ListElement {
-                    name: "John Brown"
-                    number: "555 8426"
-                }
-                ListElement {
-                    name: "Sam Wise"
-                    number: "555 0473"
-                }
-                ListElement {
-                    name: "Bill Smith"
-                    number: "555 3264"
-                }
-                ListElement {
-                    name: "John Brown"
-                    number: "555 8426"
-                }
-                ListElement {
-                    name: "Sam Wise"
-                    number: "555 0473"
-                }
-                ListElement {
-                    name: "Bill Smith"
-                    number: "555 3264"
-                }
-                ListElement {
-                    name: "John Brown"
-                    number: "555 8426"
-                }
-                ListElement {
-                    name: "Sam Wise"
-                    number: "555 0473"
-                }
-                ListElement {
-                    name: "Bill Smith"
-                    number: "555 3264"
-                }
-                ListElement {
-                    name: "John Brown"
-                    number: "555 8426"
-                }
-                ListElement {
-                    name: "Sam Wise"
-                    number: "555 0473"
-                }
-                ListElement {
-                    name: "Bill Smith"
-                    number: "555 3264"
-                }
-                ListElement {
-                    name: "John Brown"
-                    number: "555 8426"
-                }
-                ListElement {
-                    name: "Sam Wise"
-                    number: "555 0473"
-                }
-                ListElement {
-                    name: "Bill Smith"
-                    number: "555 3264"
-                }
-                ListElement {
-                    name: "John Brown"
-                    number: "555 8426"
-                }
-                ListElement {
-                    name: "Sam Wise"
-                    number: "555 0473"
-                }
-                ListElement {
-                    name: "Bill Smith"
-                    number: "555 3264"
-                }
-                ListElement {
-                    name: "John Brown"
-                    number: "555 8426"
-                }
-                ListElement {
-                    name: "Sam Wise"
-                    number: "555 0473"
-                }
-            }
-
-
             ListView {
                 width: parent.width
                 height: parent.height - subtitle.height
+                clip: true
                 anchors
                 {
                     top: subtitle.bottom
@@ -288,12 +186,150 @@ Paper {
                     bottomMargin: R.dp(20)
                 }
 
-                model: model
+                model: opt.ds ? ds_model : md.eng
                 delegate: ExtendableLabel {
-                    title_ko: name + ": " + number
+                    title_no: (opt.ds ? number : (model.modelData.id + 1)) + ". "
+                    title_ko: opt.ds ? name : model.modelData.name
+                    contents: opt.ds ? content : model.modelData.desc1
                 }
             }
+
+            ListModel {
+                            id: ds_model
+                            ListElement {
+                                name: "Bill Smith"
+                                number: "0"
+                                content: "conttetwetpwfjpwefpojwepofjw234234pojefconttetwetpwfjpwefpojwepofjwpojefconttetwetpwfjpwefpojwepofjwpojefconttetwetpwfjpwefpojwepofjwpojefconttetwetpwfjpwefpojwepofjwpojefconttetwetpwfjpwefpojwepofjwpojefconttetwetpwfjpwefpojwepofjwpojefconttetwetpwfjpwefpojwepofjwpojefconttetwetpwfjpwefpojwepofjwpojefconttetwetpwfjpwefpojwepofjwpojefconttetwetpwfjpwefpojwepofjwpojefconttetwetpwfjpwefpojwepofjwpojef555"
+                                text: "AAA"
+                            }
+                            ListElement {
+                                name: "John Brown"
+                                number: "1"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                                text: "BBB"
+                            }
+                            ListElement {
+                                name: "Sam Wise"
+                                number: "2"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                                text: "CCC"
+                            }
+                            ListElement {
+                                name: "Bill Smith"
+                                number: "3"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                                text: "DDD"
+                            }
+                            ListElement {
+                                name: "John Brown"
+                                number: "4"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                                text: "EEE"
+                            }
+                            ListElement {
+                                name: "Sam Wise"
+                                number: "5"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                                text: "FFF"
+                            }
+                            ListElement {
+                                name: "Bill Smith"
+                                number: "6"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "John Brown"
+                                number: "7"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "Sam Wise"
+                                number: "8"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "Bill Smith"
+                                number: "9"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "John Brown"
+                                number: "10"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "Sam Wise"
+                                number: "11"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "Bill Smith"
+                                number: "12"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "John Brown"
+                                number: "13"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "Sam Wise"
+                                number: "14"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "Bill Smith"
+                                number: "15"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "John Brown"
+                                number: "16"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "Sam Wise"
+                                number: "17"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "Bill Smith"
+                                number: "18"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "John Brown"
+                                number: "19"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "Sam Wise"
+                                number: "20"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "Bill Smith"
+                                number: "21"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "John Brown"
+                                number: "22"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                            ListElement {
+                                name: "Sam Wise"
+                                number: "23"
+                                content: "conttetwetpwfjpwefpojwepofjwpojef"
+                            }
+                        }
         }
+    }
+
+    Component.onCompleted:
+    {
+        console.log(md.eng);
+        console.log(md.list);
     }
 }
 

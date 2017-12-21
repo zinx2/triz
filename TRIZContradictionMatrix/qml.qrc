@@ -13,5 +13,7 @@
         <file>qml/ExtendableLabel.qml</file>
         <file>qml/Subtitle.qml</file>
         <file>qml/Margin.qml</file>
+        <file>qml/ExtendedTextEdit.qml</file>
+        <file>qml/ExtendedComboBox.qml</file>
     </qresource>
 </RCC>

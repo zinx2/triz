@@ -6,14 +6,14 @@ Row
     property string title : ""
 
     width: parent.width
-    height: R.dp(30)
-    spacing: R.dp(10)
+    height: R.dp(48)
+    spacing: R.dp(20)
 
     Image
     {
         source: R.image("rectangle.png");
-        width: R.dp(30)
-        height: R.dp(30)
+        width: R.dp(48)
+        height: R.dp(48)
         rotation: 30
     }
 

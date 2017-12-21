@@ -30,10 +30,6 @@ ApplicationWindow {
         initialItem: MainView
         {
             id: mainView
-            onPush:
-            {
-                stackView.push();
-            }
         }
     }
 

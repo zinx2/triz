@@ -3,7 +3,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import "Resources.js" as R
 
-Rectangle {
+    Rectangle {
 
     property bool visibleBackBtn : true
 
