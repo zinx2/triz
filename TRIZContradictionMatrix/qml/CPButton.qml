@@ -57,7 +57,7 @@ Rectangle {
     anchors.centerIn: parent
   }
 
-  ExtendedText {
+  CPText {
       id:txt
       visible: type=="text"
       text: btnName

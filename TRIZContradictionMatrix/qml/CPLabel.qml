@@ -3,7 +3,7 @@ import "Resources.js" as R
 
 Rectangle
 {
-    id: extendableLabel
+    id: cpLabel
     width: parent.width
     height: extended ? R.dp(50) + detailData.height : R.dp(50)
 
@@ -27,7 +27,7 @@ Rectangle
             id: metaData
             width: parent.width
             height: R.dp(50)
-            color: ma.pressed ? R.color_buttonPressed : extendableLabel.color
+            color: ma.pressed ? R.color_buttonPressed : cpLabel.color
 
             Row
             {
@@ -41,7 +41,7 @@ Rectangle
                     height: R.dp(30)
                 }
 
-                ExtendedText
+                CPText
                 {
                     id: noTxt
                     text: title_no
@@ -50,7 +50,7 @@ Rectangle
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                ExtendedText
+                CPText
                 {
                     id: koTxt
                     text: title_ko
@@ -59,7 +59,7 @@ Rectangle
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                ExtendedText
+                CPText
                 {
                     id: enTxt
                     text: title_en
@@ -74,10 +74,10 @@ Rectangle
                 id: ma
                 anchors.fill: parent
                 onClicked: {
-//                    extendableLabel._clicked();
+//                    cpLabel._clicked();
                     extended = !extended;
 //                    detailData.visible = extended;
-//                    console.log(extendableLabel.height);
+//                    console.log(cpLabel.height);
 //                    update();
 
 //                    color = ma.pressed ? "steelblue" : "lightsteelblue";
@@ -113,7 +113,7 @@ Rectangle
                     height: R.dp(30)
                 }
 
-                ExtendedTextEdit
+                CPTextEdit
                 {
                     id: detail
                     text: contents

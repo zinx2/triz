@@ -17,9 +17,9 @@ Row
         rotation: 30
     }
 
-    ExtendedText
+    CPText
     {
         text: title
-        font.pointSize: R.pt(25)
+        font.pointSize: R.pt(20)
     }
 }

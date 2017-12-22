@@ -16,6 +16,36 @@ ApplicationWindow {
         fadeoutTimer.running = true;
     }
 
+//    MainView
+//    {
+//        id: mainView
+//     }
+
+//    onVisibleChanged:
+//    {
+//      if(visible)
+//      {
+//        base.source = "VWMain.qml"
+//      }
+//    }
+
+//    Loader
+//    {
+//      id : base
+//      anchors.fill: parent
+//      asynchronous: true
+//      visible: status == Loader.Ready
+
+//      onStatusChanged:
+//      {
+//        if(base.status == Loader.Loading) opt.check("loading----")
+//        if(base.status == Loader.Ready)
+//        {
+//          //appWindow.isSplashPageVisible = false;
+//        }
+//      }
+//    }
+
     StackView
     {
         id: stackView
@@ -27,9 +57,9 @@ ApplicationWindow {
                              event.accepted = true;
                          }
 
-        initialItem: MainView
+        initialItem: VWMain
         {
-            id: mainView
+
         }
     }
 
@@ -91,6 +121,7 @@ ApplicationWindow {
     //            text: qsTr("Second")
     //        }
     //    }
+    function log() { console.log("QQWQW"); }
     function pop() { stackView.pop(); }
 }
 

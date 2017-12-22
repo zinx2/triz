@@ -2,17 +2,19 @@
     <qresource prefix="/">
         <file>qtquickcontrols2.conf</file>
         <file>qml/main.qml</file>
-        <file>qml/MainView.qml</file>
         <file>qml/Resources.js</file>
         <file>qml/Paper.qml</file>
-        <file>qml/MatrixView.qml</file>
-        <file>qml/ButtonText.qml</file>
-        <file>qml/ExtendedText.qml</file>
-        <file>qml/ExtendedButton.qml</file>
-        <file>qml/ExtendableLabel.qml</file>
-        <file>qml/Subtitle.qml</file>
-        <file>qml/Margin.qml</file>
-        <file>qml/ExtendedTextEdit.qml</file>
-        <file>qml/ExtendedComboBox.qml</file>
+        <file>qml/VWMatrix.qml</file>
+        <file>qml/CPText.qml</file>
+        <file>qml/CPButton.qml</file>
+        <file>qml/CPLabel.qml</file>
+        <file>qml/CPSubtitle.qml</file>
+        <file>qml/LYMargin.qml</file>
+        <file>qml/CPTextEdit.qml</file>
+        <file>qml/CPComboBox.qml</file>
+        <file>qml/VWRoot.qml</file>
+        <file>qml/VWEngineering.qml</file>
+        <file>qml/VWMain.qml</file>
+        <file>qml/CPListViewMatrix.qml</file>
     </qresource>
 </RCC>
