@@ -3,7 +3,7 @@ import "Resources.js" as R
 
 Row
 {
-    property string title : ""
+    property string title : "sample"
 
     width: parent.width
     height: R.dp(48)
@@ -14,12 +14,13 @@ Row
         source: R.image("rectangle.png");
         width: R.dp(48)
         height: R.dp(48)
-        rotation: 30
+        anchors.verticalCenter: parent.verticalCenter
     }
 
     CPText
     {
         text: title
-        font.pointSize: R.pt(20)
+        font.pointSize: R.pt(23)
+        anchors.verticalCenter: parent.verticalCenter
     }
 }

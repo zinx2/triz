@@ -14,7 +14,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 HEADERS += \
     src/display_information.h \
-    src/native_app.h
+    src/native_app.h \
+    src/model.h \
+    src/option.h
 
 SOURCES += \
     src/main.cpp \

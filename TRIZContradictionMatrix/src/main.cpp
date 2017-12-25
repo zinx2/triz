@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 	Model model;
 	Option opt; opt.setDs(false);
 
-	qmlRegisterType<Concept>("concept", 1, 0, "Concept");		    
+    //qmlRegisterType<Concept>("concept", 1, 0, "Concept");
 	
 
     QQmlApplicationEngine engine;

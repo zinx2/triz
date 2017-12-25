@@ -18,14 +18,16 @@ public:
     Q_INVOKABLE QString log() const;
     Q_INVOKABLE qreal  dp(const int value) const;
     Q_INVOKABLE qreal  pt(const int value) const;
+    Q_INVOKABLE int width() const;
+    Q_INVOKABLE int height() const;
 
   private:
 //    qreal refDpi     ;
 //    qreal refHeight  ;
 //    qreal refWidth   ;
 //    QRect rect       ;
-    int   width      ;
-    int   height     ;
+    int   m_width      ;
+    int   m_height     ;
 //    qreal dpi        ;
 //    qreal hdpi       ;
     qreal m_ratio    = 1.0;

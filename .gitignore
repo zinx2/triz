@@ -16,3 +16,14 @@ TRIZContradictionMatrix/TRIZContradictionMatrix.pro.user.eb14293
 debug_triz
 build-TRIZContradictionMatrix-Desktop_Qt_5_9_3_MinGW_32bit-Debug
 build-TRIZ
+TRIZContradiction-RELEASE
+build-TRIZAndroid
+build-TRIZContradictionMatrix-Android-release
+build-TRIZContradictionMatrix-Android-release2
+build-TRIZContradictionMatrix-Android-release3
+build-TRIZContradictionMatrix
+TRIZContradictionMatrix/.vs
+TRIZContradictionMatrix/android-sources-native/.idea
+TRIZContradictionMatrix/debug
+TRIZContradictionMatrix/GeneratedFiles
+TRIZContradictionMatrix/x64

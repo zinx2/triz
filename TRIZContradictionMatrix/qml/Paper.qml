@@ -9,6 +9,8 @@ Rectangle {
     property string titleText : R.string_title
     signal evtBack()
 
+//    width: parent.width
+//    height:parent.height
     Rectangle
     {
         id: titleBar
@@ -40,7 +42,7 @@ Rectangle {
             color: R.color_appTitleText
             horizontalAlignment : Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
-            font.pointSize: R.pt(26)
+            font.pointSize: R.pt(24)
             font.family: fontNanumBarunGothic.name
             FontLoader {
                 id: fontNanumBarunGothic

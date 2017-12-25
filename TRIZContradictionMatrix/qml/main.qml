@@ -13,54 +13,93 @@ ApplicationWindow {
 
 
     Component.onCompleted: {
+        //        R.design_size_width = di.width();
         fadeoutTimer.running = true;
+        console.log(R.design_size_width)
     }
 
-//    MainView
-//    {
-//        id: mainView
-//     }
+    property bool doQuit: false
+    Timer
+    {
+        id: doQuitControl
+        interval:1500
+        repeat: false
+        onTriggered: {
+            doQuit = false
+        }
+    }
+    Item {
+        anchors.fill : parent
+        focus: true
+        Keys.onReleased : {
+            console.log("Keys.onReleased >> ")
+            if(/*event.key === Qt.Key_Back || */event.key === Qt.Key_Escape)
+            {
+                if(popupStack.depth > 0)
+                {
+                    popupStack.clear();
+                    return;
+                }
 
-//    onVisibleChanged:
-//    {
-//      if(visible)
-//      {
-//        base.source = "VWMain.qml"
-//      }
-//    }
+                console.log("stackView.depth >> " + stackView.depth)
+                if(stackView.depth > 1)
+                    stackView.pop();
+                else
+                {
+                    if(!doQuit)
+                    {
+                        toast("한번 더 누르면 앱을 종료합니다.");
+                        doQuit = true;
+                        doQuitControl.start();
+                    }
+                    else
+                        Qt.quit();
+                }
+            }
+        }
+        Keys.onBackPressed: {
+            console.log("Keys.onBackPressed >> ")
+            if (Qt.inputMethod.visible)
+            {
+                Qt.inputMethod.hide()
+                return;
+            }
 
-//    Loader
-//    {
-//      id : base
-//      anchors.fill: parent
-//      asynchronous: true
-//      visible: status == Loader.Ready
+            if(popupStack.depth > 0)
+            {
+                popupStack.clear();
+                return;
+            }
 
-//      onStatusChanged:
-//      {
-//        if(base.status == Loader.Loading) opt.check("loading----")
-//        if(base.status == Loader.Ready)
-//        {
-//          //appWindow.isSplashPageVisible = false;
-//        }
-//      }
-//    }
+            if(stackView.depth > 1)
+                stackView.pop();
+            else
+            {
+                if(!doQuit)
+                {
+                    toast("한번 더 누르면 앱을 종료합니다.");
+                    doQuit = true;
+                    doQuitControl.start();
+                }
+                else
+                    Qt.quit();
+            }
+        }
+    }
 
     StackView
     {
         id: stackView
         anchors.fill: parent
         visible: true
-        Keys.onReleased: if(event.key === Qt.Key_Back && StackView.depth > 1)
-                         {
-                             stackView.pop();
-                             event.accepted = true;
-                         }
 
-        initialItem: VWMain
-        {
+        initialItem: VWMain { }
+    }
 
-        }
+    StackView
+    {
+        id: popupStack
+        z: 99999
     }
 
     Rectangle
@@ -71,57 +110,68 @@ ApplicationWindow {
         Image
         {
             anchors.centerIn: parent
-            source: R.image("splash.jpg")
+            width: R.dp(184)
+            height: R.dp(349)
+            source: R.image("splash.png")
         }
-        Behavior on opacity { NumberAnimation { duration: 1000 ;easing.type: Easing.OutQuad}  }
+        Behavior on opacity { NumberAnimation { duration: 1000 ;easing.type: Easing.InQuad}  }
     }
 
     Timer
     {
-      id:fadeoutTimer
-      interval:10
-      repeat: false
-      onTriggered:{
-          splashView.opacity = 0;
-          hideTimer.start();
-      }
+        id:fadeoutTimer
+        interval:10
+        repeat: false
+        onTriggered:{
+            splashView.opacity = 0;
+            hideTimer.start();
+        }
     }
     Timer
     {
-      id:hideTimer
-      interval:300
-      repeat: false
-      onTriggered:
-          splashView.visible=false;
+        id:hideTimer
+        interval:800
+        repeat: false
+        onTriggered: {
+            splashView.visible=false;
+        }
     }
 
-    //    SwipeView {
-    //        id: swipeView
-    //        anchors.fill: parent
-    //        currentIndex: tabBar.currentIndex
 
-    //        Page1 {
-    //        }
+    CPToast
+    {
+        id: toastPopup
+        anchors
+        {
+            horizontalCenter: parent.horizontalCenter
+            bottom: parent.bottom
+            bottomMargin: R.dp(150)
+        }
+//        visible: false
+    }
 
-    //        Page {
-    //            Label {
-    //                text: qsTr("Second page")
-    //                anchors.centerIn: parent
-    //            }
-    //        }
-    //    }
+    function toast(message)
+    {
+        toastPopup.show(message);
+    }
 
-    //    footer: TabBar {
-    //        id: tabBar
-    //        currentIndex: swipeView.currentIndex
-    //        TabButton {
-    //            text: qsTr("First")
-    //        }
-    //        TabButton {
-    //            text: qsTr("Second")
-    //        }
-    //    }
-    function log() { console.log("QQWQW"); }
-    function pop() { stackView.pop(); }
+    function popup(component/*src*/, properties, callback)
+    {
+        //        var component = Qt.createComponent(src);
+        if(component.status == Component.Ready)
+        {
+            if(typeof properties === "undefined" || properties === null) properties = {"x":0, "y":0}
+
+            //            var obj = Qt.createComponent(src).createObject(this, properties);
+            var obj = component.createObject(this, properties);
+            if(obj === null || typeof obj === "undefined") return;
+            obj.evtBack.connect(function() {
+                popupStack.clear()
+            });
+            obj.evtCallback.connect(callback);
+
+            popupStack.push(obj, StackView.Immediate);
+        }
+    }
 }
 
