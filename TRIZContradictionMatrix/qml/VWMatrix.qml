@@ -6,54 +6,56 @@ Paper {
     id: mainView
     visibleBackBtn: true
 
-    Column
+    Loader
     {
+        id: loader
         width: parent.width
-        height: parent.height - R.height_titlaBar
-        y: R.height_titlaBar
+        height: parent.height
+    }
 
-        LYMargin
-        {
-            height: R.dp(20)
-        }
-
-        CPSubtitle
-        {
-            id: subtitle
-            anchors
-            {
-                left: parent.left
-                leftMargin: R.dp(20)
-            }
-            title : "공학변수별 설명"
-        }
-
-        LYMargin
-        {
-            height: R.dp(20)
-        }
-
-        CPListViewMatrix
+    Component
+    {
+        id: component
+        Column
         {
             width: parent.width
-            height: parent.height - R.height_titlaBar - subtitle.height - R.dp(20) * 3
-            anchors
-            {
-                left: subtitleLayout.left
-                leftMargin: R.dp(20)
-                right: subtitleLayout.right
-                rightMargin: R.dp(20)
-            }
-        }
+            height: parent.height - R.height_titlaBar
+            y: R.height_titlaBar
 
-        LYMargin
-        {
-            height: R.dp(20)
+            LYMargin { height: R.dp(30) }
+            CPDescContradictionMatrix
+            {
+
+            }
+
+            LYMargin { height: R.dp(60) }
+            CPDescEngineeringVariable { }
         }
     }
 
     onEvtBack:
     {
         stackView.pop();
+    }
+
+    Component.onCompleted:
+    {
+        viewTrigger.start();
+    }
+
+    Keys.onReleased : {
+        if (event.key == Qt.Key_Back)
+            stackView.pop();
+    }
+
+    Timer
+    {
+        id: viewTrigger
+        interval: 200
+        repeat: false
+        onTriggered:
+        {
+            loader.sourceComponent = component;
+        }
     }
 }
